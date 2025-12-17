@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QCM Révision Transport</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .question {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+        
+        .question-text {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 17px;
+        }
+        
+        .options {
+            margin-left: 10px;
+        }
+        
+        .option {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+        
+        .option label {
+            cursor: pointer;
+            font-size: 15px;
+            color: #555;
+        }
+        
+        .option input[type="text"] {
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 15px;
+            width: 150px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .result {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .result.good {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+        
+        .result.medium {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffeaa7;
+        }
+        
+        .result.bad {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+        
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚚 QCM Révision Transport de Marchandises</h1>
+        <p class="subtitle">1ère Bac Pro Transport</p>
+        
+        <form id="quizForm">
+            <!-- Question 1 (ancienne 30) -->
+            <div class="question">
+                <div class="question-text">1. Quelle est la différence entre le chargeur et le receveur ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q1" value="a" id="q1a">
+                        <label for="q1a">Le chargeur charge physiquement le camion, le receveur décharge</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" value="b" id="q1b">
+                        <label for="q1b">Le chargeur est l'expéditeur de la marchandise, le receveur est le destinataire</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" value="c" id="q1c">
+                        <label for="q1c">Il n'y a aucune différence</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback1"></div>
+            </div>
+
+            <!-- Question 2 (ancienne 1) -->
+            <div class="question">
+                <div class="question-text">2. Quel intervenant organise le transport sans être transporteur lui-même ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q2" value="a" id="q2a">
+                        <label for="q2a">Le commissionnaire de transport</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" value="b" id="q2b">
+                        <label for="q2b">Le chargeur</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" value="c" id="q2c">
+                        <label for="q2c">Le transporteur</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback2"></div>
+            </div>
+
+            <!-- Question 3 (ancienne 18) -->
+            <div class="question">
+                <div class="question-text">3. Quelle est la capitale de la région Île-de-France ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q3" value="a" id="q3a">
+                        <label for="q3a">Paris</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" value="b" id="q3b">
+                        <label for="q3b">Versailles</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" value="c" id="q3c">
+                        <label for="q3c">Créteil</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback3"></div>
+            </div>
+
+            <!-- Question 4 (ancienne 2) -->
+            <div class="question">
+                <div class="question-text">4. La bourse de fret permet de :</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q4" value="a" id="q4a">
+                        <label for="q4a">Mettre en relation offres et demandes de transport</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" value="b" id="q4b">
+                        <label for="q4b">Acheter des marchandises</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" value="c" id="q4c">
+                        <label for="q4c">Stocker des marchandises</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback4"></div>
+            </div>
+
+            <!-- Question 5 (ancienne 3) -->
+            <div class="question">
+                <div class="question-text">5. Quel mode de transport est le plus adapté pour les marchandises urgentes ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q5" value="a" id="q5a">
+                        <label for="q5a">Transport maritime</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" value="b" id="q5b">
+                        <label for="q5b">Transport aérien</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" value="c" id="q5c">
+                        <label for="q5c">Transport fluvial</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback5"></div>
+            </div>
+
+            <!-- Question 6 (ancienne 19) -->
+            <div class="question">
+                <div class="question-text">6. Lyon est la capitale de quelle région ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q6" value="a" id="q6a">
+                        <label for="q6a">Auvergne-Rhône-Alpes</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q6" value="b" id="q6b">
+                        <label for="q6b">Bourgogne-Franche-Comté</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q6" value="c" id="q6c">
+                        <label for="q6c">Occitanie</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback6"></div>
+            </div>
+
+            <!-- Question 7 (ancienne 4 modifiée) -->
+            <div class="question">
+                <div class="question-text">7. Le document de transport routier s'appelle :</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q7" value="a" id="q7a">
+                        <label for="q7a">Le connaissement maritime</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q7" value="b" id="q7b">
+                        <label for="q7b">La lettre de voiture</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q7" value="c" id="q7c">
+                        <label for="q7c">La lettre de transport aérien (LTA)</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback7"></div>
+            </div>
+
+            <!-- Question 8 (ancienne 5) -->
+            <div class="question">
+                <div class="question-text">8. Quelle est la différence entre transport en compte propre et transport pour compte d'autrui ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q8" value="a" id="q8a">
+                        <label for="q8a">En compte propre : on transporte ses propres marchandises / Compte d'autrui : on transporte pour des clients</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q8" value="b" id="q8b">
+                        <label for="q8b">Aucune différence</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q8" value="c" id="q8c">
+                        <label for="q8c">En compte propre : transport international / Compte d'autrui : transport national</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback8"></div>
+            </div>
+
+            <!-- Question 9 (ancienne 26) -->
+            <div class="question">
+                <div class="question-text">9. Quelle est la capitale de la région Hauts-de-France ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q9" value="a" id="q9a">
+                        <label for="q9a">Toulouse</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q9" value="b" id="q9b">
+                        <label for="q9b">Lille</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q9" value="c" id="q9c">
+                        <label for="q9c">Orléans</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback9"></div>
+            </div>
+
+            <!-- Question 10 (ancienne 6) -->
+            <div class="question">
+                <div class="question-text">10. Un produit en poudre fine comme le ciment est qualifié de marchandise :</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q10" value="a" id="q10a">
+                        <label for="q10a">Vrac liquide</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q10" value="b" id="q10b">
+                        <label for="q10b">Pulvérulent</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q10" value="c" id="q10c">
+                        <label for="q10c">Conditionnée</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback10"></div>
+            </div>
+
+            <!-- Question 11 (ancienne 7) -->
+            <div class="question">
+                <div class="question-text">11. Le pétrole brut est transporté en :</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q11" value="a" id="q11a">
+                        <label for="q11a">Vrac liquide</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q11" value="b" id="q11b">
+                        <label for="q11b">Vrac solide</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q11" value="c" id="q11c">
+                        <label for="q11c">Conditionné</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback11"></div>
+            </div>
+
+            <!-- Question 12 (ancienne 27) -->
+            <div class="question">
+                <div class="question-text">12. Bordeaux est la capitale de quelle région ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q12" value="a" id="q12a">
+                        <label for="q12a">Occitanie</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12" value="b" id="q12b">
+                        <label for="q12b">Nouvelle-Aquitaine</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12" value="c" id="q12c">
+                        <label for="q12c">Pays de la Loire</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback12"></div>
+            </div>
+
+            <!-- Question 13 (ancienne 8) -->
+            <div class="question">
+                <div class="question-text">13. Quel support de charge est utilisé pour transporter des produits en poudre ou granulés ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q13" value="a" id="q13a">
+                        <label for="q13a">Le conteneur</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q13" value="b" id="q13b">
+                        <label for="q13b">Le big bag</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q13" value="c" id="q13c">
+                        <label for="q13c">Le roll</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback13"></div>
+            </div>
+
+            <!-- Question 14 (ancienne 9) -->
+            <div class="question">
+                <div class="question-text">14. Un fût est généralement utilisé pour transporter :</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q14" value="a" id="q14a">
+                        <label for="q14a">Des liquides ou produits dangereux</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q14" value="b" id="q14b">
+                        <label for="q14b">Du vrac solide</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q14" value="c" id="q14c">
+                        <label for="q14c">Des marchandises exceptionnelles</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback14"></div>
+            </div>
+
+            <!-- Question 15 (ancienne 28) -->
+            <div class="question">
+                <div class="question-text">15. Quelle région a pour capitale Strasbourg ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q15" value="a" id="q15a">
+                        <label for="q15a">Bourgogne-Franche-Comté</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q15" value="b" id="q15b">
+                        <label for="q15b">Grand Est</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q15" value="c" id="q15c">
+                        <label for="q15c">Centre-Val de Loire</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback15"></div>
+            </div>
+
+            <!-- Question 16 (ancienne 10) - Calcul -->
+            <div class="question">
+                <div class="question-text">16. Convertir 3,5 tonnes en kilogrammes :</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="text" name="q16" id="q16" placeholder="Réponse"> kg
+                    </div>
+                </div>
+                <div class="feedback" id="feedback16"></div>
+            </div>
+
+            <!-- Question 17 (ancienne 11) - Calcul -->
+            <div class="question">
+                <div class="question-text">17. Convertir 2500 mètres en kilomètres :</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="text" name="q17" id="q17" placeholder="Réponse"> km
+                    </div>
+                </div>
+                <div class="feedback" id="feedback17"></div>
+            </div>
+
+            <!-- Question 18 (ancienne 29) -->
+            <div class="question">
+                <div class="question-text">18. Marseille est située dans quelle région ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q18" value="a" id="q18a">
+                        <label for="q18a">Occitanie</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q18" value="b" id="q18b">
+                        <label for="q18b">Provence-Alpes-Côte d'Azur</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q18" value="c" id="q18c">
+                        <label for="q18c">Auvergne-Rhône-Alpes</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback18"></div>
+            </div>
+
+            <!-- Question 19 (ancienne 12) - Pourcentage -->
+            <div class="question">
+                <div class="question-text">19. Quel pourcentage représente 1/4 ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q19" value="a" id="q19a">
+                        <label for="q19a">50%</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q19" value="b" id="q19b">
+                        <label for="q19b">25%</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q19" value="c" id="q19c">
+                        <label for="q19c">75%</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback19"></div>
+            </div>
+
+            <!-- Question 20 (ancienne 13) - Pourcentage -->
+            <div class="question">
+                <div class="question-text">20. Un camion a une capacité de 20 tonnes. Il transporte actuellement 15 tonnes. Quel est le taux de chargement ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="text" name="q20" id="q20" placeholder="Réponse"> %
+                    </div>
+                </div>
+                <div class="feedback" id="feedback20"></div>
+            </div>
+
+            <!-- Question 21 (ancienne 14) -->
+            <div class="question">
+                <div class="question-text">21. Le "Bill of Lading" (B/L) est :</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q21" value="a" id="q21a">
+                        <label for="q21a">Le connaissement maritime en anglais</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q21" value="b" id="q21b">
+                        <label for="q21b">Un document de transport aérien</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q21" value="c" id="q21c">
+                        <label for="q21c">Une facture de transport</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback21"></div>
+            </div>
+
+            <!-- Question 22 -->
+            <div class="question">
+                <div class="question-text">22. Quelle est la différence entre transport public et transport privé ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q22" value="a" id="q22a">
+                        <label for="q22a">Transport public : pour le compte d'autrui / Transport privé : en compte propre</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q22" value="b" id="q22b">
+                        <label for="q22b">Transport public : autobus et métro / Transport privé : voitures</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q22" value="c" id="q22c">
+                        <label for="q22c">Transport public : gratuit / Transport privé : payant</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback22"></div>
+            </div>
+
+            <!-- Question 23 (ancienne 16) -->
+            <div class="question">
+                <div class="question-text">23. Qui est le client expéditeur ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q23" value="a" id="q23a">
+                        <label for="q23a">Celui qui reçoit la marchandise</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q23" value="b" id="q23b">
+                        <label for="q23b">Celui qui envoie la marchandise</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q23" value="c" id="q23c">
+                        <label for="q23c">Le transporteur</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback23"></div>
+            </div>
+
+            <!-- Question 24 (ancienne 17) -->
+            <div class="question">
+                <div class="question-text">24. Le transport fluvial utilise :</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q24" value="a" id="q24a">
+                        <label for="q24a">Les océans et mers</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q24" value="b" id="q24b">
+                        <label for="q24b">Les rivières et canaux</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q24" value="c" id="q24c">
+                        <label for="q24c">Les routes</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback24"></div>
+            </div>
+
+            <!-- Question 25 (ancienne 20) -->
+            <div class="question">
+                <div class="question-text">25. Dans le contrat de vente, qui sont les deux parties principales ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q25" value="a" id="q25a">
+                        <label for="q25a">Le vendeur et l'acheteur</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q25" value="b" id="q25b">
+                        <label for="q25b">Le transporteur et le client</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q25" value="c" id="q25c">
+                        <label for="q25c">L'expéditeur et le transporteur</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback25"></div>
+            </div>
+
+            <!-- Question 26 (ancienne 21) -->
+            <div class="question">
+                <div class="question-text">26. Les caisses carton sont principalement utilisées pour :</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q26" value="a" id="q26a">
+                        <label for="q26a">Les marchandises légères et conditionnées</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q26" value="b" id="q26b">
+                        <label for="q26b">Les liquides en vrac</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q26" value="c" id="q26c">
+                        <label for="q26c">Les marchandises très lourdes</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback26"></div>
+            </div>
+
+            <!-- Question 27 (ancienne 22) -->
+            <div class="question">
+                <div class="question-text">27. Convertir 750 grammes en kilogrammes :</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="text" name="q27" id="q27" placeholder="Réponse"> kg
+                    </div>
+                </div>
+                <div class="feedback" id="feedback27"></div>
+            </div>
+
+            <!-- Question 28 (ancienne 23) -->
+            <div class="question">
+                <div class="question-text">28. Un camion parcourt 450 km. Combien fait-il de mètres ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="text" name="q28" id="q28" placeholder="Réponse"> m
+                    </div>
+                </div>
+                <div class="feedback" id="feedback28"></div>
+            </div>
+
+            <!-- Question 29 (ancienne 24) -->
+            <div class="question">
+                <div class="question-text">29. Quel pourcentage représente 3/4 ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q29" value="a" id="q29a">
+                        <label for="q29a">25%</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q29" value="b" id="q29b">
+                        <label for="q29b">50%</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q29" value="c" id="q29c">
+                        <label for="q29c">75%</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback29"></div>
+            </div>
+
+            <!-- Question 30 (ancienne 25) -->
+            <div class="question">
+                <div class="question-text">30. Une marchandise exceptionnelle se caractérise par :</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q30" value="a" id="q30a">
+                        <label for="q30a">Son poids ou ses dimensions hors normes</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q30" value="b" id="q30b">
+                        <label for="q30b">Sa valeur très élevée uniquement</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q30" value="c" id="q30c">
+                        <label for="q30c">Sa provenance étrangère</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback30"></div>
+            </div>
+
+            <!-- Question 31 -->
+            <div class="question">
+                <div class="question-text">31. En cas d'anomalie sur la marchandise à l'arrivée chez le destinataire en transport routier, quel mot est utilisé ?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q31" value="a" id="q31a">
+                        <label for="q31a">Réserves</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q31" value="b" id="q31b">
+                        <label for="q31b">Réclamation</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q31" value="c" id="q31c">
+                        <label for="q31c">Litige</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback31"></div>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="checkAnswers()">Valider mes réponses</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'b',
+            q2: 'a',
+            q3: 'a',
+            q4: 'a',
+            q5: 'b',
+            q6: 'a',
+            q7: 'b',
+            q8: 'a',
+            q9: 'b',
+            q10: 'b',
+            q11: 'a',
+            q12: 'b',
+            q13: 'b',
+            q14: 'a',
+            q15: 'b',
+            q16: '3500',
+            q17: '2.5',
+            q18: 'b',
+            q19: 'b',
+            q20: '75',
+            q21: 'a',
+            q22: 'a',
+            q23: 'b',
+            q24: 'b',
+            q25: 'a',
+            q26: 'a',
+            q27: '0.75',
+            q28: '450000',
+            q29: 'c',
+            q30: 'a',
+            q31: 'a'
+        };
+
+        const explanations = {
+            q1: 'Chargeur = expéditeur (qui envoie) / Receveur = destinataire (qui reçoit).',
+            q2: 'Le commissionnaire de transport organise le transport de A à Z sans être transporteur.',
+            q3: 'Paris est le chef-lieu de la région Île-de-France.',
+            q4: 'La bourse de fret est une plateforme de mise en relation entre offres et demandes.',
+            q5: 'Le transport aérien est le plus rapide pour les marchandises urgentes.',
+            q6: 'Lyon est le chef-lieu de la région Auvergne-Rhône-Alpes.',
+            q7: 'La lettre de voiture est le document de transport routier.',
+            q8: 'Compte propre = ses propres marchandises / Compte d\'autrui = pour des clients.',
+            q9: 'Lille est le chef-lieu de la région Hauts-de-France.',
+            q10: 'Les produits pulvérulents sont des poudres fines (ciment, farine...).',
+            q11: 'Les liquides non conditionnés sont du vrac liquide.',
+            q12: 'Bordeaux est le chef-lieu de la région Nouvelle-Aquitaine.',
+            q13: 'Le big bag est un grand sac souple pour produits en vrac.',
+            q14: 'Les fûts servent pour les liquides, notamment dangereux.',
+            q15: 'Strasbourg est le chef-lieu de la région Grand Est.',
+            q16: '1 tonne = 1000 kg, donc 3,5 t = 3500 kg.',
+            q17: '1 km = 1000 m, donc 2500 m = 2,5 km.',
+            q18: 'Marseille est le chef-lieu de la région Provence-Alpes-Côte d\'Azur (PACA).',
+            q19: '1/4 = 0,25 = 25%.',
+            q20: '(15/20) × 100 = 75%.',
+            q21: 'Bill of Lading = connaissement maritime en anglais.',
+            q22: 'Transport public = compte d\'autrui (rémunéré) / Transport privé = compte propre.',
+            q23: 'Le client expéditeur est celui qui envoie la marchandise.',
+            q24: 'Le transport fluvial utilise les voies d\'eau intérieures (rivières, canaux).',
+            q25: 'Le contrat de vente lie le vendeur et l\'acheteur de la marchandise.',
+            q26: 'Les caisses carton sont légères et pour marchandises conditionnées.',
+            q27: '1 kg = 1000 g, donc 750 g = 0,75 kg.',
+            q28: '1 km = 1000 m, donc 450 km = 450 000 m.',
+            q29: '3/4 = 0,75 = 75%.',
+            q30: 'Marchandise exceptionnelle = dimensions ou poids hors normes (convoi exceptionnel).',
+            q31: 'Les réserves doivent être émises sur la lettre de voiture en cas d\'anomalie à la livraison.'
+        };
+
+        function checkAnswers() {
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+
+            for (let question in correctAnswers) {
+                const userAnswer = document.querySelector(`input[name="${question}"]:checked`) || 
+                                 document.getElementById(question);
+                const feedback = document.getElementById(`feedback${question.slice(1)}`);
+                
+                let isCorrect = false;
+                
+                if (userAnswer) {
+                    if (userAnswer.type === 'radio') {
+                        isCorrect = userAnswer.value === correctAnswers[question];
+                    } else {
+                        const userValue = userAnswer.value.trim().replace(',', '.');
+                        const correctValue = correctAnswers[question];
+                        isCorrect = Math.abs(parseFloat(userValue) - parseFloat(correctValue)) < 0.01;
+                    }
+                }
+
+                if (isCorrect) {
+                    score++;
+                    feedback.className = 'feedback correct';
+                    feedback.innerHTML = `✅ Correct ! ${explanations[question]}`;
+                } else {
+                    feedback.className = 'feedback incorrect';
+                    feedback.innerHTML = `❌ Incorrect. ${explanations[question]}`;
+                }
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultDiv = document.getElementById('result');
+            
+            let resultClass = 'bad';
+            let message = 'Continuez à réviser !';
+            
+            if (percentage >= 80) {
+                resultClass = 'good';
+                message = 'Excellent travail ! 🎉';
+            } else if (percentage >= 60) {
+                resultClass = 'medium';
+                message = 'Bon travail ! Encore quelques efforts.';
+            }
+
+            resultDiv.className = `result ${resultClass}`;
+            resultDiv.innerHTML = `
+                <div>Score : ${score}/${total} (${percentage}%)</div>
+                <div>${message}</div>
+            `;
+
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
